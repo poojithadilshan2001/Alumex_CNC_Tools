@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ALUMEX PLC - CNC Tool Crib & Cutter Store</title>
+  <title>ALUMEX PLC - Component Plant CNC Machine Tools Inventory</title>
   
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#d97706">
@@ -47,7 +47,7 @@
 <body class="bg-zinc-100 text-zinc-800 dark:bg-metal-950 dark:text-zinc-100 min-h-screen font-sans antialiased flex flex-col md:flex-row">
 
   <!-- ===================================================== -->
-  <!-- SIDEBAR NAVIGATION (INDUSTRIAL AMBER & STEEL UI)     -->
+  <!-- SIDEBAR NAVIGATION                                    -->
   <!-- ===================================================== -->
   <aside class="w-full md:w-64 bg-zinc-900 text-zinc-300 border-r border-zinc-800 flex flex-col justify-between shrink-0">
     <div>
@@ -57,11 +57,8 @@
           ⚙️
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-black tracking-widest text-amber-500 uppercase">ALUMEX PLC</span>
-            <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/30 px-1.5 py-0.5 rounded font-mono">CRIB</span>
-          </div>
-          <h2 class="text-sm font-bold text-white leading-snug">Tool Bits & Cutters</h2>
+          <span class="text-xs font-black tracking-widest text-amber-500 uppercase">ALUMEX PLC</span>
+          <h2 class="text-xs font-bold text-white leading-snug">Component Plant CNC Machine Tools Inventory</h2>
         </div>
       </div>
 
@@ -69,18 +66,18 @@
       <nav class="p-3 space-y-1 text-xs font-bold">
         <button onclick="switchView('dashboard')" id="nav-dashboard" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-amber-500 text-zinc-950 shadow-sm transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-          Tool Dashboard
+          Dashboard Overview
         </button>
 
         <button onclick="switchView('inventory')" id="nav-inventory" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-zinc-800 hover:text-white transition text-zinc-400">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-          Active Tool Inventory
+          Tools Inventory
         </button>
 
         <button onclick="switchView('requisition')" id="nav-requisition" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-zinc-800 hover:text-white transition text-zinc-400">
           <div class="flex items-center gap-3">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            Notice to Supervisor
+            Letter to Supervisor
           </div>
           <span id="lowStockSideBadge" class="bg-rose-500 text-white text-[10px] px-1.5 py-0.2 rounded-full font-bold">0</span>
         </button>
@@ -88,7 +85,7 @@
         <button onclick="switchView('trash')" id="nav-trash" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl hover:bg-zinc-800 hover:text-white transition text-zinc-400">
           <div class="flex items-center gap-3">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-            Disposed Bits (Trash)
+            Disposed Tools (Trash)
           </div>
           <span id="trashCountBadge" class="hidden bg-zinc-700 text-zinc-300 text-[10px] px-1.5 py-0.2 rounded-full">0</span>
         </button>
@@ -106,23 +103,20 @@
   </aside>
 
   <!-- ===================================================== -->
-  <!-- MAIN WORKSPACE                                        -->
+  <!-- MAIN CONTENT AREA                                     -->
   <!-- ===================================================== -->
   <div class="flex-1 flex flex-col min-w-0">
     
     <!-- Top Action Bar -->
     <header class="bg-white dark:bg-metal-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-3.5 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <h2 id="viewHeading" class="text-base font-black text-zinc-900 dark:text-white uppercase tracking-wider">Cutter Store Overview</h2>
-        <div class="flex items-center space-x-1.5 px-2.5 py-0.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-[10px] font-bold text-amber-600 dark:text-amber-400">
-          <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-          <span id="syncStatus">CONNECTED</span>
-        </div>
+      <div>
+        <h2 class="text-sm md:text-base font-black text-zinc-900 dark:text-white uppercase tracking-wider">ALUMEX PLC</h2>
+        <p class="text-[11px] font-bold text-amber-600 dark:text-amber-400">Component Plant CNC Machine Tools Inventory</p>
       </div>
 
       <div class="flex items-center gap-2.5">
-        <button onclick="openFormModal()" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition flex items-center gap-1.5 shadow-sm">
-          <span>+</span> Add Cutter Bit
+        <button onclick="openFormModal()" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 px-3.5 py-2 rounded-xl text-xs font-black transition flex items-center gap-1.5 shadow-sm">
+          <span>+</span> Add New Tool
         </button>
         <button onclick="toggleDarkMode()" class="p-2 rounded-xl bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs font-bold">
           <span id="themeIcon">🌙</span>
@@ -133,34 +127,28 @@
     <main class="p-6 space-y-6 flex-1 overflow-y-auto">
 
       <!-- ========================================== -->
-      <!-- VIEW 1: TOOL CRIB DASHBOARD                -->
+      <!-- VIEW 1: DASHBOARD                          -->
       <!-- ========================================== -->
       <section id="view-dashboard" class="space-y-6">
         
         <!-- Metric Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div class="bg-white dark:bg-metal-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm border-l-4 border-l-amber-500">
-            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Total Tool Specifications</p>
+            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Total Registered Tools</p>
             <p id="kpiTotalTypes" class="text-2xl font-black text-zinc-900 dark:text-white mt-1">0</p>
-            <p class="text-[10px] text-zinc-500 mt-0.5">End mill, Drill, Tap, Chamfer, Face</p>
+            <p class="text-[10px] text-zinc-500 mt-0.5">Milling, drilling & threading tools</p>
           </div>
 
           <div class="bg-white dark:bg-metal-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm border-l-4 border-l-emerald-500">
-            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Total Crib Physical Stock</p>
+            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Total Quantity in Inventory</p>
             <p id="kpiTotalStock" class="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1">0 pcs</p>
-            <p class="text-[10px] text-zinc-500 mt-0.5">Available for machine mounts</p>
+            <p class="text-[10px] text-zinc-500 mt-0.5">Physical items available</p>
           </div>
 
           <div class="bg-white dark:bg-metal-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm border-l-4 border-l-rose-500">
-            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Low Stock Warning (&lt; 2)</p>
+            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Low Stock (&lt; 2 units)</p>
             <p id="kpiLowStock" class="text-2xl font-black text-rose-600 dark:text-rose-400 mt-1">0</p>
-            <p class="text-[10px] text-rose-500 font-semibold mt-0.5">Requires memo to Mr. Kavinda</p>
-          </div>
-
-          <div class="bg-white dark:bg-metal-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm border-l-4 border-l-blue-500">
-            <p class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Database Status</p>
-            <p class="text-2xl font-black text-blue-600 dark:text-blue-400 mt-1">Cloud Synced</p>
-            <p class="text-[10px] text-zinc-500 mt-0.5">cayqxybekaksppzbnnrw</p>
+            <p class="text-[10px] text-rose-500 font-semibold mt-0.5">Requires restock memo to supervisor</p>
           </div>
         </div>
 
@@ -169,51 +157,51 @@
           <div onclick="filterByCategory('End Mill')" class="cursor-pointer bg-white dark:bg-metal-900 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-amber-500 transition text-center group">
             <span class="text-2xl block mb-1">🪓</span>
             <p class="text-xs font-black text-zinc-900 dark:text-white group-hover:text-amber-500">End Mill</p>
-            <p id="catCount-EndMill" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 in crib</p>
+            <p id="catCount-EndMill" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 pcs</p>
           </div>
 
           <div onclick="filterByCategory('Ball Nose End Mill')" class="cursor-pointer bg-white dark:bg-metal-900 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-amber-500 transition text-center group">
             <span class="text-2xl block mb-1">🔮</span>
             <p class="text-xs font-black text-zinc-900 dark:text-white group-hover:text-amber-500">Ball Nose</p>
-            <p id="catCount-BallNose" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 in crib</p>
+            <p id="catCount-BallNose" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 pcs</p>
           </div>
 
           <div onclick="filterByCategory('Drill Bit')" class="cursor-pointer bg-white dark:bg-metal-900 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-amber-500 transition text-center group">
             <span class="text-2xl block mb-1">🔩</span>
             <p class="text-xs font-black text-zinc-900 dark:text-white group-hover:text-amber-500">Drill Bits</p>
-            <p id="catCount-Drill" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 in crib</p>
+            <p id="catCount-Drill" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 pcs</p>
           </div>
 
           <div onclick="filterByCategory('Tap Bit')" class="cursor-pointer bg-white dark:bg-metal-900 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-amber-500 transition text-center group">
             <span class="text-2xl block mb-1">🧵</span>
             <p class="text-xs font-black text-zinc-900 dark:text-white group-hover:text-amber-500">Tap Bits</p>
-            <p id="catCount-Tap" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 in crib</p>
+            <p id="catCount-Tap" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 pcs</p>
           </div>
 
           <div onclick="filterByCategory('Chamfer Tool')" class="cursor-pointer bg-white dark:bg-metal-900 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-amber-500 transition text-center group">
             <span class="text-2xl block mb-1">📐</span>
             <p class="text-xs font-black text-zinc-900 dark:text-white group-hover:text-amber-500">Chamfer</p>
-            <p id="catCount-Chamfer" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 in crib</p>
+            <p id="catCount-Chamfer" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 pcs</p>
           </div>
 
           <div onclick="filterByCategory('Face Mill')" class="cursor-pointer bg-white dark:bg-metal-900 p-3.5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-amber-500 transition text-center group">
             <span class="text-2xl block mb-1">🪙</span>
             <p class="text-xs font-black text-zinc-900 dark:text-white group-hover:text-amber-500">Face Mill</p>
-            <p id="catCount-FaceMill" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 in crib</p>
+            <p id="catCount-FaceMill" class="text-[10px] text-zinc-400 font-mono mt-0.5">0 pcs</p>
           </div>
         </div>
 
         <!-- Charts Row -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div class="lg:col-span-2 bg-white dark:bg-metal-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
-            <h3 class="font-black text-xs text-zinc-700 dark:text-zinc-200 uppercase tracking-wider mb-4">Total Stock Distribution</h3>
+            <h3 class="font-black text-xs text-zinc-700 dark:text-zinc-200 uppercase tracking-wider mb-4">Stock Quantities by Tool Type</h3>
             <div class="h-64">
               <canvas id="chartStockDistribution"></canvas>
             </div>
           </div>
 
           <div class="bg-white dark:bg-metal-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
-            <h3 class="font-black text-xs text-zinc-700 dark:text-zinc-200 uppercase tracking-wider mb-4">Category Ratio</h3>
+            <h3 class="font-black text-xs text-zinc-700 dark:text-zinc-200 uppercase tracking-wider mb-4">Category Distribution</h3>
             <div class="h-64 flex items-center justify-center">
               <canvas id="chartCategoryPie"></canvas>
             </div>
@@ -222,13 +210,13 @@
       </section>
 
       <!-- ========================================== -->
-      <!-- VIEW 2: ACTIVE TOOL INVENTORY              -->
+      <!-- VIEW 2: ACTIVE TOOLS INVENTORY             -->
       <!-- ========================================== -->
       <section id="view-inventory" class="hidden space-y-6">
         
         <div class="flex flex-wrap items-center justify-between gap-3 bg-white dark:bg-metal-900 p-4 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
           <div class="flex flex-wrap items-center gap-2">
-            <input type="text" id="toolSearchInput" oninput="applyFiltersAndRender()" placeholder="Search cutter code, diameter, rack..." class="w-72 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-amber-500">
+            <input type="text" id="toolSearchInput" oninput="applyFiltersAndRender()" placeholder="Search diameter, description, rack location..." class="w-72 bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2 text-xs font-medium outline-none focus:ring-2 focus:ring-amber-500">
             
             <select id="filterCategorySelect" onchange="applyFiltersAndRender()" class="bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2 text-xs font-bold outline-none">
               <option value="ALL">All Categories</option>
@@ -253,18 +241,16 @@
               <thead class="bg-zinc-100 dark:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400 font-bold uppercase border-b border-zinc-200 dark:border-zinc-800">
                 <tr>
                   <th class="p-3.5">#</th>
-                  <th class="p-3.5">Tool Code</th>
                   <th class="p-3.5">Category</th>
-                  <th class="p-3.5">Diameter & Geometry</th>
-                  <th class="p-3.5">Flutes</th>
-                  <th class="p-3.5">Crib Stock</th>
-                  <th class="p-3.5">Coating / Grade</th>
-                  <th class="p-3.5">Crib Rack</th>
+                  <th class="p-3.5">Diameter & Size</th>
+                  <th class="p-3.5">Description / Application</th>
+                  <th class="p-3.5">Stock Quantity</th>
+                  <th class="p-3.5">Storage Location</th>
                   <th class="p-3.5 text-center">Actions</th>
                 </tr>
               </thead>
               <tbody id="inventoryTableBody" class="divide-y divide-zinc-200 dark:divide-zinc-800">
-                <tr><td colspan="9" class="p-6 text-center text-zinc-400">Loading cutter tools from Supabase...</td></tr>
+                <tr><td colspan="7" class="p-6 text-center text-zinc-400">Loading tools from database...</td></tr>
               </tbody>
             </table>
           </div>
@@ -272,15 +258,15 @@
       </section>
 
       <!-- ========================================== -->
-      <!-- VIEW 3: REQUISITION / MEMO TO MR. KAVINDA  -->
+      <!-- VIEW 3: REQUISITION LETTER TO MR. KAVINDA  -->
       <!-- ========================================== -->
       <section id="view-requisition" class="hidden space-y-6">
         
         <div class="bg-zinc-900 border border-zinc-800 text-white p-6 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-xl">
           <div>
             <span class="text-[10px] font-black uppercase text-amber-500 tracking-widest">OFFICIAL MEMORANDUM</span>
-            <h3 class="text-lg font-black mt-0.5">CNC Cutting Tool Restocking Notification</h3>
-            <p class="text-xs text-zinc-400 mt-1">Pre-configured requisition format addressed to supervisor for depleted stock (&lt; 2 units)</p>
+            <h3 class="text-lg font-black mt-0.5">CNC Machine Tools Restocking Notice</h3>
+            <p class="text-xs text-zinc-400 mt-1">Direct official memorandum addressed to supervisor for low stock tools (&lt; 2 units)</p>
           </div>
           <div class="bg-zinc-950 p-3.5 rounded-xl border border-zinc-800 text-xs text-right">
             <span class="text-zinc-400 block text-[10px] uppercase font-bold">ADDRESSED TO:</span>
@@ -303,16 +289,16 @@
                 <input type="text" id="senderNameInput" placeholder="e.g., Poojitha Dilshan" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
               </div>
               <div>
-                <label class="block font-bold text-zinc-500 uppercase mb-1">Your Title / Role</label>
-                <input type="text" id="senderRoleInput" value="CNC Production Specialist / Engineer" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
+                <label class="block font-bold text-zinc-500 uppercase mb-1">Your Designation / Role</label>
+                <input type="text" id="senderRoleInput" value="Intern (CNC Machine Operations)" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
               </div>
               <div>
                 <label class="block font-bold text-zinc-500 uppercase mb-1">Target CNC Machine Line</label>
-                <input type="text" id="senderLineInput" value="Component Plant Milling Lines (Lines 01 & 02)" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
+                <input type="text" id="senderLineInput" value="Component Plant CNC Machine 5000 / Milling Line" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
               </div>
 
               <div class="pt-3 border-t border-zinc-200 dark:border-zinc-800 space-y-2">
-                <label class="block font-bold text-zinc-500 uppercase">Add Single Tool to Memo</label>
+                <label class="block font-bold text-zinc-500 uppercase">Add Individual Tool to Notice</label>
                 <select id="reqToolPicker" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2 text-xs font-bold outline-none">
                   <option value="">-- Choose Tool --</option>
                 </select>
@@ -325,7 +311,7 @@
                   </select>
                 </div>
                 <button onclick="addToolToNoticeManual()" class="w-full bg-amber-500 hover:bg-amber-600 text-zinc-950 font-black py-2 rounded-xl text-xs transition">
-                  + Add to Notice List
+                  + Add to Letter
                 </button>
               </div>
             </div>
@@ -334,7 +320,7 @@
           <div class="lg:col-span-2 bg-white dark:bg-metal-900 p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center mb-3">
-                <h4 class="text-xs font-black uppercase tracking-wider text-zinc-900 dark:text-white">Low-Stock Tool List for Memo</h4>
+                <h4 class="text-xs font-black uppercase tracking-wider text-zinc-900 dark:text-white">Selected Tools for Notice to Mr. Kavinda</h4>
                 <button onclick="clearRequisitionList()" class="text-xs text-rose-500 hover:underline font-bold">Clear All</button>
               </div>
 
@@ -344,10 +330,10 @@
             </div>
 
             <div class="mt-6 pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-3">
-              <span class="text-[11px] text-zinc-400">Generates formal letter addressed to Mr. U.N. Kavinda.</span>
+              <span class="text-[11px] text-zinc-400">Generates formal memorandum with signature blocks.</span>
               <button onclick="generateFormalSupervisorLetterPDF()" class="w-full sm:w-auto bg-rose-600 hover:bg-rose-700 text-white font-black px-6 py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-rose-600/20">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                Generate PDF Letter to Mr. Kavinda
+                Export PDF Letter to Mr. Kavinda
               </button>
             </div>
           </div>
@@ -361,7 +347,7 @@
       <section id="view-trash" class="hidden space-y-6">
         <div class="bg-amber-50 dark:bg-amber-950/40 p-4 rounded-2xl border border-amber-200 dark:border-amber-800 flex justify-between items-center">
           <div>
-            <h4 class="font-bold text-xs text-amber-900 dark:text-amber-200 uppercase tracking-wider">Disposed Tool Bits Archive</h4>
+            <h4 class="font-bold text-xs text-amber-900 dark:text-amber-200 uppercase tracking-wider">Disposed Tools Archive</h4>
             <p class="text-xs text-amber-700 dark:text-amber-300">Recover tools or permanently purge records.</p>
           </div>
           <div class="flex gap-2">
@@ -375,9 +361,9 @@
             <thead class="bg-zinc-100 dark:bg-zinc-800 text-zinc-500 uppercase font-bold">
               <tr>
                 <th class="p-3"><input type="checkbox" id="selectAllTrashBox" onchange="toggleSelectAllTrash(this)"></th>
-                <th class="p-3">Tool Code</th>
                 <th class="p-3">Category</th>
-                <th class="p-3">Diameter</th>
+                <th class="p-3">Diameter & Size</th>
+                <th class="p-3">Description</th>
                 <th class="p-3">Action</th>
               </tr>
             </thead>
@@ -392,28 +378,23 @@
   </div>
 
   <!-- ========================================== -->
-  <!-- MODAL: ADD / EDIT TOOL BIT                 -->
+  <!-- MODAL: ADD / EDIT TOOL                     -->
   <!-- ========================================== -->
   <div id="modalForm" class="hidden fixed inset-0 z-50 bg-zinc-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white dark:bg-metal-900 w-full max-w-xl rounded-3xl p-6 shadow-2xl border border-zinc-200 dark:border-zinc-800">
+    <div class="bg-white dark:bg-metal-900 w-full max-w-lg rounded-3xl p-6 shadow-2xl border border-zinc-200 dark:border-zinc-800">
       <div class="flex justify-between items-center mb-4">
         <div>
-          <h3 id="formModalTitle" class="text-base font-black text-zinc-900 dark:text-white uppercase tracking-wider">Log Cutter Bit to Crib</h3>
-          <p class="text-xs text-zinc-400">Register new tooling parameters directly to Supabase.</p>
+          <h3 id="formModalTitle" class="text-base font-black text-zinc-900 dark:text-white uppercase tracking-wider">Log Tool to Inventory</h3>
+          <p class="text-xs text-zinc-400">Add or edit tool parameters in the database.</p>
         </div>
         <button onclick="closeFormModal()" class="text-zinc-400 hover:text-zinc-200 text-xl font-bold">×</button>
       </div>
 
-      <form id="toolForm" onsubmit="submitToolForm(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+      <form id="toolForm" onsubmit="submitToolForm(event)" class="space-y-3.5 text-xs">
         <input type="hidden" id="formId">
 
         <div>
-          <label class="block font-bold text-zinc-500 uppercase mb-1">Tool Code / Designation *</label>
-          <input type="text" id="formCode" placeholder="e.g., EM-D10-F4" required class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-bold">
-        </div>
-
-        <div>
-          <label class="block font-bold text-zinc-500 uppercase mb-1">Category *</label>
+          <label class="block font-bold text-zinc-500 uppercase mb-1">Tool Category *</label>
           <select id="formCategory" required class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-bold">
             <option value="End Mill">End Mill (Flat)</option>
             <option value="Ball Nose End Mill">Ball Nose End Mill</option>
@@ -426,32 +407,29 @@
 
         <div>
           <label class="block font-bold text-zinc-500 uppercase mb-1">Diameter / Size *</label>
-          <input type="text" id="formDiameter" placeholder="e.g., 10.0 mm or M8x1.25" required class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none">
+          <input type="text" id="formDiameter" placeholder="e.g., 10.0 mm, 8.0 mm (R4), or M8 x 1.25" required class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
         </div>
 
         <div>
-          <label class="block font-bold text-zinc-500 uppercase mb-1">Flutes / Teeth Count</label>
-          <input type="number" id="formFlutes" min="1" max="12" placeholder="e.g., 2, 4" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none">
+          <label class="block font-bold text-zinc-500 uppercase mb-1">Description / Machining Application</label>
+          <input type="text" id="formDescription" placeholder="e.g., Dedicated for aluminum slotting & profile pocketing" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
         </div>
 
-        <div>
-          <label class="block font-bold text-zinc-500 uppercase mb-1">In-Stock Quantity (Pcs) *</label>
-          <input type="number" id="formStock" min="0" placeholder="e.g., 3" required class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-bold text-amber-600 dark:text-amber-400">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-zinc-500 uppercase mb-1">In-Stock Quantity (Pcs) *</label>
+            <input type="number" id="formStock" min="0" placeholder="e.g., 3" required class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-bold text-amber-600 dark:text-amber-400">
+          </div>
+
+          <div>
+            <label class="block font-bold text-zinc-500 uppercase mb-1">Storage Location / Rack</label>
+            <input type="text" id="formLocation" placeholder="e.g., Rack A-02 / Drawer 1" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none font-medium">
+          </div>
         </div>
 
-        <div>
-          <label class="block font-bold text-zinc-500 uppercase mb-1">Coating / Grade</label>
-          <input type="text" id="formCoating" placeholder="e.g., TiAlN Solid Carbide" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none">
-        </div>
-
-        <div class="sm:col-span-2">
-          <label class="block font-bold text-zinc-500 uppercase mb-1">Crib Cabinet / Rack Location</label>
-          <input type="text" id="formLocation" placeholder="e.g., Rack A-02 / Bin 4" class="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 rounded-xl p-2.5 outline-none">
-        </div>
-
-        <div class="sm:col-span-2 flex justify-end gap-2 pt-3 border-t border-zinc-200 dark:border-zinc-800">
+        <div class="flex justify-end gap-2 pt-3 border-t border-zinc-200 dark:border-zinc-800">
           <button type="button" onclick="closeFormModal()" class="bg-zinc-200 dark:bg-zinc-800 px-4 py-2 rounded-xl font-bold">Cancel</button>
-          <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-black px-5 py-2 rounded-xl">Save to Cloud</button>
+          <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-zinc-950 font-black px-5 py-2 rounded-xl">Save to Database</button>
         </div>
       </form>
     </div>
@@ -497,14 +475,6 @@
       const activeBtn = document.getElementById(`nav-${viewId}`);
       if (activeBtn) activeBtn.className = "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-amber-500 text-zinc-950 font-black shadow-sm transition";
 
-      const titles = {
-        dashboard: "Cutter Store Overview",
-        inventory: "Active Cutter Tool Inventory",
-        requisition: "Official Notice to Mr. U.N. Kavinda",
-        trash: "Disposed Cutter Records"
-      };
-      document.getElementById('viewHeading').innerText = titles[viewId];
-
       if (viewId === 'dashboard') renderCharts();
     }
 
@@ -516,19 +486,16 @@
     }
 
     async function fetchAllData() {
-      document.getElementById('syncStatus').innerText = "SYNCING...";
       const { data, error } = await supabaseClient.from('cnc_tool_bits').select('*');
 
       if (error) {
         showToast("Database error: " + error.message, true);
-        document.getElementById('syncStatus').innerText = "OFFLINE";
         return;
       }
 
       tools = (data || []).filter(t => !t.is_deleted);
       trashTools = (data || []).filter(t => t.is_deleted);
 
-      document.getElementById('syncStatus').innerText = "CONNECTED";
       refreshDashboard();
       renderTrashTable();
     }
@@ -561,13 +528,13 @@
       };
       for (const [c, elemId] of Object.entries(cats)) {
         const count = tools.filter(t => t.category === c).reduce((sum, cur) => sum + (parseInt(cur.stock) || 0), 0);
-        document.getElementById(elemId).innerText = `${count} in crib`;
+        document.getElementById(elemId).innerText = `${count} pcs`;
       }
 
       const picker = document.getElementById('reqToolPicker');
       picker.innerHTML = '<option value="">-- Choose Tool --</option>';
       tools.forEach(t => {
-        picker.innerHTML += `<option value="${t.id}">${t.tool_code} (${t.category} - ${t.diameter}) [Stock: ${t.stock}]</option>`;
+        picker.innerHTML += `<option value="${t.id}">${t.category} - ${t.diameter} [Stock: ${t.stock}]</option>`;
       });
 
       applyFiltersAndRender();
@@ -585,8 +552,8 @@
       const cat = document.getElementById('filterCategorySelect').value;
 
       displayedTools = tools.filter(t => {
-        const matchQ = (t.tool_code || '').toLowerCase().includes(q) ||
-                       (t.diameter || '').toLowerCase().includes(q) ||
+        const matchQ = (t.diameter || '').toLowerCase().includes(q) ||
+                       (t.description || '').toLowerCase().includes(q) ||
                        (t.location || '').toLowerCase().includes(q);
         const matchCat = (cat === 'ALL') || t.category === cat;
         return matchQ && matchCat;
@@ -594,7 +561,7 @@
 
       const tbody = document.getElementById('inventoryTableBody');
       if (displayedTools.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="9" class="p-6 text-center text-zinc-400">No cutter tools found matching filter.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-zinc-400">No tools found matching filter.</td></tr>`;
         return;
       }
 
@@ -608,13 +575,11 @@
         tbody.innerHTML += `
           <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition">
             <td class="p-3.5 font-semibold text-zinc-400">${i + 1}</td>
-            <td class="p-3.5 font-black text-zinc-900 dark:text-white font-mono">${t.tool_code}</td>
             <td class="p-3.5"><span class="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-amber-600 dark:text-amber-400 font-bold text-[11px]">${t.category}</span></td>
-            <td class="p-3.5 font-bold">${t.diameter}</td>
-            <td class="p-3.5">${t.flutes || '-'} Flutes</td>
+            <td class="p-3.5 font-bold text-zinc-900 dark:text-white">${t.diameter}</td>
+            <td class="p-3.5 text-zinc-600 dark:text-zinc-300 font-medium">${t.description || '-'}</td>
             <td class="p-3.5 font-mono">${stockHtml}</td>
-            <td class="p-3.5 text-zinc-500">${t.coating || 'Carbide'}</td>
-            <td class="p-3.5 font-mono font-bold text-zinc-600 dark:text-zinc-300">${t.location || 'Rack -'}</td>
+            <td class="p-3.5 font-mono font-bold text-zinc-600 dark:text-zinc-300">${t.location || '-'}</td>
             <td class="p-3.5 text-center space-x-2">
               <button onclick="editTool(${t.id})" class="text-amber-600 hover:underline font-bold">Edit</button>
               <button onclick="deleteTool(${t.id})" class="text-rose-500 hover:underline font-bold">Dispose</button>
@@ -684,7 +649,7 @@
     function openFormModal() {
       document.getElementById('toolForm').reset();
       document.getElementById('formId').value = '';
-      document.getElementById('formModalTitle').innerText = "Log Cutter Bit to Crib";
+      document.getElementById('formModalTitle').innerText = "Log Tool to Inventory";
       document.getElementById('modalForm').classList.remove('hidden');
     }
 
@@ -696,14 +661,12 @@
       const item = tools.find(t => t.id === id);
       if (!item) return;
       document.getElementById('formId').value = item.id;
-      document.getElementById('formCode').value = item.tool_code;
       document.getElementById('formCategory').value = item.category;
       document.getElementById('formDiameter').value = item.diameter;
-      document.getElementById('formFlutes').value = item.flutes || '';
+      document.getElementById('formDescription').value = item.description || '';
       document.getElementById('formStock').value = item.stock;
-      document.getElementById('formCoating').value = item.coating || '';
       document.getElementById('formLocation').value = item.location || '';
-      document.getElementById('formModalTitle').innerText = "Revise Cutter Specs";
+      document.getElementById('formModalTitle').innerText = "Revise Tool Parameters";
       document.getElementById('modalForm').classList.remove('hidden');
     }
 
@@ -711,13 +674,12 @@
       e.preventDefault();
       const id = document.getElementById('formId').value;
       const payload = {
-        tool_code: document.getElementById('formCode').value.trim().toUpperCase(),
+        tool_code: "TOOL-" + Math.floor(1000 + Math.random() * 9000),
         category: document.getElementById('formCategory').value,
         diameter: document.getElementById('formDiameter').value.trim(),
-        flutes: parseInt(document.getElementById('formFlutes').value, 10) || null,
+        description: document.getElementById('formDescription').value.trim() || null,
         stock: parseInt(document.getElementById('formStock').value, 10) || 0,
-        coating: document.getElementById('formCoating').value.trim() || 'Solid Carbide',
-        location: document.getElementById('formLocation').value.trim() || 'Rack Unassigned',
+        location: document.getElementById('formLocation').value.trim() || 'Inventory Rack',
         is_deleted: false
       };
 
@@ -733,14 +695,14 @@
       if (error) {
         showToast("Error saving: " + error.message, true);
       } else {
-        showToast(id ? "Cutter bit revised successfully!" : "New cutter bit added!");
+        showToast(id ? "Tool revised successfully!" : "New tool added to inventory!");
         closeFormModal();
         fetchAllData();
       }
     }
 
     async function deleteTool(id) {
-      if (!confirm("Move this cutter to disposal bin?")) return;
+      if (!confirm("Move this tool to disposal bin?")) return;
       const { error } = await supabaseClient
         .from('cnc_tool_bits')
         .update({ is_deleted: true, deleted_at: new Date().toISOString() })
@@ -765,9 +727,9 @@
         tbody.innerHTML += `
           <tr class="hover:bg-zinc-50 dark:hover:bg-zinc-800/40">
             <td class="p-3"><input type="checkbox" value="${t.id}" class="trash-item-box"></td>
-            <td class="p-3 font-mono font-bold">${t.tool_code}</td>
-            <td class="p-3">${t.category}</td>
+            <td class="p-3 font-bold">${t.category}</td>
             <td class="p-3">${t.diameter}</td>
+            <td class="p-3">${t.description || '-'}</td>
             <td class="p-3"><button onclick="restoreSingleTrash(${t.id})" class="text-emerald-600 font-bold hover:underline">Restore</button></td>
           </tr>
         `;
@@ -782,7 +744,7 @@
 
       if (error) showToast("Restore failed: " + error.message, true);
       else {
-        showToast("Cutter restored to active inventory!");
+        showToast("Tool restored to active inventory!");
         fetchAllData();
       }
     }
@@ -818,14 +780,14 @@
     function autoPopulateLowStock() {
       const lowStock = tools.filter(t => (parseInt(t.stock) || 0) < 2);
       if (lowStock.length === 0) {
-        showToast("No cutter bits currently under 2 units in stock!");
+        showToast("No tools currently under 2 units in stock!");
         return;
       }
       noticeTools = lowStock.map(t => ({
         id: t.id,
-        code: t.tool_code,
         category: t.category,
         diameter: t.diameter,
+        description: t.description || '-',
         stock: t.stock,
         reqQty: 5,
         priority: t.stock === 0 ? "Critical" : "Urgent"
@@ -845,9 +807,9 @@
 
       noticeTools.push({
         id: item.id,
-        code: item.tool_code,
         category: item.category,
         diameter: item.diameter,
+        description: item.description || '-',
         stock: item.stock,
         reqQty: qty,
         priority: priority
@@ -866,9 +828,9 @@
         container.innerHTML += `
           <div class="flex justify-between items-center bg-zinc-50 dark:bg-zinc-800 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 text-xs">
             <div>
-              <span class="font-black text-zinc-900 dark:text-white font-mono">${item.code}</span>
-              <span class="text-zinc-400"> (${item.category} - ${item.diameter})</span>
-              <div class="text-[10px] text-zinc-500">In Crib: <b class="text-rose-500">${item.stock} pcs</b> | Order: <b>${item.reqQty} pcs</b></div>
+              <span class="font-black text-zinc-900 dark:text-white">${item.category}</span>
+              <span class="text-amber-600 dark:text-amber-400 font-bold"> - ${item.diameter}</span>
+              <div class="text-[10px] text-zinc-500">In Stock: <b class="text-rose-500">${item.stock} pcs</b> | Order: <b>${item.reqQty} pcs</b></div>
             </div>
             <div class="flex items-center gap-2">
               <span class="px-2 py-0.5 rounded text-[10px] font-bold ${item.priority === 'Critical' ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20' : 'bg-amber-500/10 text-amber-500 border border-amber-500/20'}">${item.priority}</span>
@@ -886,71 +848,75 @@
 
     function generateFormalSupervisorLetterPDF() {
       const sender = document.getElementById('senderNameInput').value.trim() || 'Poojitha Dilshan';
-      const role = document.getElementById('senderRoleInput').value.trim() || 'CNC Production Specialist';
-      const machineLine = document.getElementById('senderLineInput').value.trim() || 'Component Plant Milling Lines';
+      const role = document.getElementById('senderRoleInput').value.trim() || 'Intern (CNC Machine Operations)';
+      const machineLine = document.getElementById('senderLineInput').value.trim() || 'Component Plant CNC Machine 5000 / Milling Line';
 
       if (noticeTools.length === 0) {
-        showToast("Please add at least one tool bit to the notice.", true);
+        showToast("Please add at least one tool to the notice.", true);
         return;
       }
 
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF('p', 'mm', 'a4');
 
+      // Top Header Banner
       doc.setFillColor(217, 119, 6);
-      doc.rect(0, 0, 210, 25, 'F');
+      doc.rect(0, 0, 210, 26, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(13);
       doc.setFont(undefined, 'bold');
-      doc.text("ALUMEX PLC - COMPONENT MANUFACTURING PLANT", 14, 12);
-      doc.setFontSize(8.5);
+      doc.text("ALUMEX PLC", 14, 12);
+      doc.setFontSize(9);
       doc.setFont(undefined, 'normal');
-      doc.text("INTERNAL MEMORANDUM | CNC CUTTING TOOL RESTOCKING NOTICE", 14, 18);
+      doc.text("Component Plant CNC Machine Tools Inventory", 14, 18);
 
+      // Memo Address Section
       doc.setTextColor(24, 24, 27);
       doc.setFontSize(9);
       doc.setFont(undefined, 'bold');
-      doc.text("TO:", 14, 35);
+      doc.text("TO:", 14, 36);
       doc.setFont(undefined, 'normal');
-      doc.text("Mr. U.N. Kavinda", 28, 35);
-      doc.text("Production & Operations Plant Supervisor", 28, 40);
+      doc.text("Mr. U.N. Kavinda", 28, 36);
+      doc.text("Production & Operations Plant Supervisor", 28, 41);
 
       doc.setFont(undefined, 'bold');
-      doc.text("FROM:", 14, 48);
+      doc.text("FROM:", 14, 49);
       doc.setFont(undefined, 'normal');
-      doc.text(`${sender}`, 28, 48);
-      doc.text(`${role} (${machineLine})`, 28, 53);
+      doc.text(`${sender}`, 28, 49);
+      doc.text(`${role} (${machineLine})`, 28, 54);
 
       doc.setFont(undefined, 'bold');
-      doc.text("DATE:", 140, 35);
+      doc.text("DATE:", 140, 36);
       doc.setFont(undefined, 'normal');
-      doc.text("19 August 2026", 155, 35);
+      doc.text("19 August 2026", 155, 36);
 
       doc.setFont(undefined, 'bold');
-      doc.text("SUBJECT:", 14, 62);
+      doc.text("SUBJECT:", 14, 63);
       doc.setTextColor(185, 28, 28);
-      doc.text("URGENT: CRITICAL STOCK SHORTAGE FOR CNC CUTTER TOOL BITS", 33, 62);
+      doc.text("URGENT: CRITICAL STOCK SHORTAGE FOR CNC MACHINE TOOLS", 33, 63);
 
+      // Body Text
       doc.setTextColor(63, 63, 70);
       doc.setFont(undefined, 'normal');
       doc.setFontSize(8.5);
-      const letterText = `Dear Mr. Kavinda,\n\nThis is an official notice to report that our CNC tool crib inventory for the following cutting tools has fallen below our minimum threshold (less than 2 pcs in crib). Continued profile milling operations without immediate restocking poses a direct risk of machine stoppage during active batch runs.\n\nKindly authorize immediate issue from central stores or emergency procurement for the listed cutter bits:`;
-      doc.text(doc.splitTextToSize(letterText, 182), 14, 70);
+      const letterText = `Dear Mr. Kavinda,\n\nThis is an official notice to report that our CNC machine tools inventory for the following tools has fallen below our minimum threshold (less than 2 pcs in stock). Continued profile milling operations without immediate restocking poses a direct risk of machine stoppage during active batch runs.\n\nKindly authorize immediate issue from central stores or emergency procurement for the listed tools:`;
+      doc.text(doc.splitTextToSize(letterText, 182), 14, 71);
 
+      // Table (No Tool Code, Clean Category & Diameter)
       const tableRows = noticeTools.map((item, idx) => [
         idx + 1,
-        item.code,
         item.category,
         item.diameter,
+        item.description || '-',
         `${item.stock} pcs`,
         `${item.reqQty} pcs`,
         item.priority
       ]);
 
       doc.autoTable({
-        head: [['#', 'Tool Code', 'Category', 'Diameter / Geometry', 'In Crib', 'Req. Qty', 'Priority']],
+        head: [['#', 'Tool Category', 'Diameter & Size', 'Description / Application', 'In Stock', 'Req. Qty', 'Priority']],
         body: tableRows,
-        startY: 94,
+        startY: 96,
         theme: 'grid',
         headStyles: { fillColor: [217, 119, 6] },
         styles: { fontSize: 8, cellPadding: 2.5 }
@@ -958,6 +924,7 @@
 
       const finalY = doc.lastAutoTable.finalY + 12;
 
+      // Sign-off
       doc.setFontSize(8.5);
       doc.setTextColor(63, 63, 70);
       doc.text("Submitted for your review and approval:", 14, finalY);
@@ -984,53 +951,52 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF('p', 'mm', 'a4');
       doc.setFillColor(217, 119, 6);
-      doc.rect(0, 0, 210, 22, 'F');
+      doc.rect(0, 0, 210, 24, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(12);
       doc.setFont(undefined, 'bold');
-      doc.text("ALUMEX PLC - CNC CUTTING TOOL CRIB CATALOG", 14, 14);
+      doc.text("ALUMEX PLC", 14, 12);
+      doc.setFontSize(9);
+      doc.setFont(undefined, 'normal');
+      doc.text("Component Plant CNC Machine Tools Inventory", 14, 18);
 
       const tableData = tools.map((t, i) => [
         i + 1,
-        t.tool_code,
         t.category,
         t.diameter,
+        t.description || '-',
         `${t.stock} pcs`,
-        t.coating || 'Carbide',
         t.location || '-'
       ]);
 
       doc.autoTable({
-        head: [['#', 'Tool Code', 'Category', 'Diameter', 'Stock', 'Coating / Grade', 'Rack']],
+        head: [['#', 'Category', 'Diameter & Size', 'Description / Application', 'Stock', 'Rack Location']],
         body: tableData,
-        startY: 30,
+        startY: 32,
         theme: 'striped',
         headStyles: { fillColor: [217, 119, 6] },
         styles: { fontSize: 8, cellPadding: 2 }
       });
 
-      doc.save("Alumex_CNC_Tool_Catalog.pdf");
+      doc.save("Alumex_CNC_Tools_Inventory.pdf");
     }
 
     function exportToExcel() {
       const exportData = tools.map((t, i) => ({
         "No.": i + 1,
-        "Tool Code": t.tool_code,
         "Category": t.category,
         "Diameter / Size": t.diameter,
-        "Flutes": t.flutes || '',
+        "Description": t.description || '',
         "In Stock (Pcs)": t.stock,
-        "Coating / Grade": t.coating || '',
-        "Crib Location": t.location || ''
+        "Storage Location": t.location || ''
       }));
 
       const ws = XLSX.utils.json_to_sheet(exportData);
       const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Tool Bits Inventory");
-      XLSX.writeFile(wb, "Alumex_Cutter_Store_Catalog.xlsx");
+      XLSX.utils.book_append_sheet(wb, ws, "Tools Inventory");
+      XLSX.writeFile(wb, "Alumex_CNC_Tools_Inventory.xlsx");
     }
 
-    // Initialize application & connect to Supabase
     fetchAllData();
   </script>
 </body>
